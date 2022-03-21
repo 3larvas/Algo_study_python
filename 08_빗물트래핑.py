@@ -1,31 +1,21 @@
-# from typing import List
-#
-# def trap(heights : List[int]) -> int:
-#     vol = 0
-#     idx_l = 0
-#     idx_r = len(heights) - 1
-#     max_h_l = heights[idx_l]
-#     max_h_r = heights[idx_r]
-#
-#     while idx_l < idx_r:
-#         print(f'{idx_l} : {idx_r}')
-#         max_h_l = max(max_h_l, heights[idx_l])
-#         max_h_r = max(max_h_r, heights[idx_r])
-#         if max_h_l < max_h_r:
-#             vol += max_h_l - heights[idx_l]
-#             idx_l += 1
-#         else:
-#             vol += max_h_r - heights[idx_r]
-#             idx_r -= 1
-#     return vol
-#
-#
-# print(trap([0,1,0,2,1,0,1,3,2,1,2,1]))
+from typing import List
 
-def aaa(num) :
-    def bbb():
-        global num
-        num += 1
-        print(num)
-    bbb()
-aaa(123)
+land = [0,1,0,2,1,0,1,3,2,1,2,1]
+
+def sol_1(land:List[int]) -> int:
+    idx_l, idx_r = 0, len(land)-1
+    max_l, max_r, vol = 0, 0, 0
+    while idx_l < idx_r:
+        if land[idx_l] < land[idx_r]:
+            if max_l > land[idx_l]:
+                vol += max_l - land[idx_l]
+            max_l = max(max_l, land[idx_l])
+            idx_l += 1
+        else:
+            if max_r > land[idx_r]:
+                vol += max_r - land[idx_r]
+            max_r = max(max_r, land[idx_r])
+            idx_r -= 1
+    return vol
+
+print(sol_1(land))
